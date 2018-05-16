@@ -12,9 +12,13 @@ import java.util.logging.Logger;
 
 public class Empleados {
 
+    /*Creamos conexion y un array para almacenar los datos de salida*/
     private Connection conexion;
     ArrayList<Empleado> empleados;
 
+    /***
+     * Realizamos el intento de conexion
+     */
     public Empleados() {
 
         try {
@@ -25,6 +29,12 @@ public class Empleados {
 
     }
 
+    /***
+     * Crear empleado.
+     * @param emp
+     * @return
+     * @throws SQLException 
+     */
     public int Create(Empleado emp) throws SQLException {
         int filas;
         String sql = "INSERT INTO empleados VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -41,6 +51,13 @@ public class Empleados {
         return filas;
     }
 
+    /***
+     * Update.
+     * Con este metodo actualizaremos los datos de los empleados a traves de su codigo de empleado
+     * @param emp_no
+     * @param emp
+     * @throws SQLException 
+     */
     public void Update(int emp_no, Empleado emp) throws SQLException {
         String sql = "UPDATE SET ? FROM Empleados WHERE emp_no";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -48,6 +65,13 @@ public class Empleados {
         sentencia.executeUpdate();
     }
 
+    /***
+     * Devolver un dato.
+     *  Devuelve solamente un registro de empleado a traves de el numero del empleado
+     * @param CodigoEmp
+     * @return
+     * @throws SQLException 
+     */
     public Empleado Readuno(int CodigoEmp) throws SQLException {
         String sql = "SELECT * FROM empleados WHERE emp_no = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -58,6 +82,12 @@ public class Empleados {
         return emp;
     }
 
+    /***
+     * Devolver todos los registros.
+     * Devuelve todos los registros de la tabla de empleados.
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<Empleado> Readtodos() throws SQLException {
         empleados = new ArrayList<Empleado>();
         String sql = "SELECT * FROM empleados";
@@ -70,6 +100,13 @@ public class Empleados {
         return empleados;
     }
 
+    /***
+     * Devuelve un dato por nombre.
+     * Devuelve todos los datos que tengan el nombre introducido.
+     * @param NombreEmp
+     * @return
+     * @throws SQLException 
+     */
     public Empleado ReadunoNombre(String NombreEmp) throws SQLException {
         String sql = "SELECT * FROM empleados WHERE apellido = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -79,7 +116,13 @@ public class Empleados {
         Empleado emp = new Empleado(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5), rs.getFloat(6), rs.getFloat(7), rs.getInt(8));
         return emp;
     }
-
+    /***
+     * Borrado.
+     * Borra empleados a traves del numero del empleado
+     * @param emp_no
+     * @return
+     * @throws SQLException 
+     */
     public int Delete(int emp_no) throws SQLException {
         int filas;
         String sql = "DELETE FROM empleados WHERE emp_no = ?";
@@ -88,7 +131,11 @@ public class Empleados {
         filas = sentencia.executeUpdate();
         return filas;
     }
-
+    
+    /***
+     * Cierre.
+     * @throws SQLException 
+     */
     public void Close() throws SQLException {
         conexion.close();
     }

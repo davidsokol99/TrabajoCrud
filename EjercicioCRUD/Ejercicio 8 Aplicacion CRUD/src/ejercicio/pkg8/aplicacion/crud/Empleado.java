@@ -13,15 +13,21 @@ import java.sql.Date;
  */
 public class Empleado {
 
-    private int emp_no;
-    private String apellido;
-    private String oficio;
-    private int dir;
-    private Date fecha_alt;
-    private float salario;
-    private float comision;
-    private int dept_no;
+    /**
+     * Creamos todas las variables del empleado.
+     */
+    private int emp_no;         //Codigo del empleado, es la primary key.
+    private String apellido;    //Nombre/apellido del empleado.
+    private String oficio;      //Oficio o tarea del empleado
+    private int dir;            //Direccion  del empleado
+    private Date fecha_alt;     //Fecha de alta (fecha cuando empezo a trabajar)
+    private float salario;      //Salario mensual del empleado
+    private float comision;     //Comision del empleado
+    private int dept_no;        //Codigo del departamento en el que trabaja
 
+    /***
+     * Constructor vacio y otro con todas las variables.
+     */
     public Empleado() {
     }
 
@@ -36,6 +42,10 @@ public class Empleado {
         this.dept_no = dept_no;
     }
 
+    /**
+     * Getters y Setters.
+     */
+    
     public int getEmp_no() {
         return emp_no;
     }

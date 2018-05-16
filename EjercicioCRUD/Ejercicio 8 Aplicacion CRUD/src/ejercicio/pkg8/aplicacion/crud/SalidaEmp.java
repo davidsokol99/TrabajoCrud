@@ -13,14 +13,20 @@ import java.util.Scanner;
  * @author David
  */
 public class SalidaEmp {
-
+    /**
+     * Creamos el scanner y los objetos de los empleados.
+     */
     Scanner sc = new Scanner(System.in);
     Empleados emps = new Empleados();
     Empleado emp = new Empleado();
-
+    
+    /**
+     * Listado de empleados.
+     * @throws SQLException 
+     */
     public void listado() throws SQLException {
 
-        System.out.println("╔====================================================╗");
+        System.out.println("╔====================================================╗"); //menu grafico
         System.out.println("║    • Selecciona la accion que quieres realizar •   ║");
         System.out.println("║                                                    ║");
         System.out.println("║                                                    ║");
@@ -29,7 +35,7 @@ public class SalidaEmp {
         System.out.println("║                                                    ║");
         System.out.println("╚====================================================╝");
         switch (Integer.parseInt(sc.nextLine())) {
-            case 1:
+            case 1: 
                 System.out.println("╔====================================================╗");
                 System.out.println("║     • Introducir el codigo del empleado     •      ║");
                 System.out.println("╚====================================================╝");
@@ -68,7 +74,10 @@ public class SalidaEmp {
                 System.out.println("");
         }
     }
-
+    /**
+     * Buscar empleado por nombre.
+     * @throws SQLException 
+     */
     public void buscarpornombre() throws SQLException {
         System.out.println("╔====================================================╗");
         System.out.println("║       • Introducir el nombre del empleado •        ║");
@@ -86,7 +95,11 @@ public class SalidaEmp {
         System.out.println("");
 
     }
-
+    
+    /**
+     * Creador de empleados.
+     * @throws SQLException 
+     */
     public void crearemp() throws SQLException {
         Empleado creemp = new Empleado();
         System.out.println("Introduce los siguientes datos del nuevo empleado: ");
@@ -112,7 +125,11 @@ public class SalidaEmp {
         System.out.println("");
         System.out.println("");
     }
-
+    
+    /**
+     * Borrado de empleados
+     * @throws SQLException 
+     */
     public void borraremp() throws SQLException {
         System.out.println("╔====================================================╗");
         System.out.println("║   • Introducir el numero del empleado a borrar •   ║");

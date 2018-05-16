@@ -10,20 +10,29 @@ package ejercicio.pkg8.aplicacion.crud;
  * @author David
  */
 public class Departamento {
+    /**
+     * Creamos las variables del departamento.
+     */
+    private int dept_no;        //Codigo del departamento, es la primary key.
+    private String dnombre;     //Nombre del departamento.
+    private String loc;         //Locaclizacion del departamento.
 
-    private int dept_no;
-    private String dnombre;
-    private String loc;
-
+    /**
+     * Creamos constructor vacio y mas tarde uno con sus variables.
+     */
     public Departamento() {
     }
 
     public Departamento(int dept_no, String dnombre, String loc) {
-        this.dept_no = dept_no;
-        this.dnombre = dnombre;
+        this.dept_no = dept_no; 
+        this.dnombre = dnombre; 
         this.loc = loc;
     }
-
+    
+    /**
+     * Getters y setters.
+     */
+    
     public int getDept_no() {
         return dept_no;
     }

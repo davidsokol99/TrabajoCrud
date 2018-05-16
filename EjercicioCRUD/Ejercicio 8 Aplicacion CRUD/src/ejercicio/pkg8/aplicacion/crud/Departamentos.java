@@ -19,10 +19,16 @@ import java.util.logging.Logger;
  * @author David
  */
 public class Departamentos {
-
+    
+/***
+ * Creamos el arrays list para almacenar los registros cuando haya que devolver mas de uno
+ */
     private Connection conexion;
-    ArrayList<Departamento> departamentos;
-
+    ArrayList<Departamento> departamentos; 
+    
+/***
+ * Aqui realizamos la conexion a la base de datos
+ */
     public Departamentos() {
 
         try {
@@ -31,7 +37,13 @@ public class Departamentos {
             Logger.getLogger(Departamentos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+/***
+ * Crear departamento.
+ * @param dep
+ * @return
+ * @throws SQLException 
+ */
     public int Create(Departamento dep) throws SQLException {
         int filas;
         String sql = "INSERT INTO departamentos VALUES (?, ?, ?)";
@@ -42,7 +54,15 @@ public class Departamentos {
         filas = sentencia.executeUpdate();
         return filas;
     }
-
+    
+    /***
+     * Update.
+     * Aqui tenemos el metodo que nos hara las actualizaciones de los datos
+     * para realizar el update en los registros, necesitaremos el num del departamento.
+     * @param dept_no
+     * @param dep
+     * @throws SQLException 
+     */
     public void Update(int dept_no, Departamento dep) throws SQLException {
         String sql = "UPDATE SET ? FROM departamentos WHERE dept_no = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -51,6 +71,14 @@ public class Departamentos {
         sentencia.executeUpdate();
     }
 
+    /***
+     * Leer un departamento.
+     * Aqui tenemos el metodo que realiza la salida de un solo departamento
+     * a traves de el codigo del departamento
+     * @param CodigoDep
+     * @return
+     * @throws SQLException 
+     */
     public Departamento Readuno(int CodigoDep) throws SQLException {
         String sql = "SELECT * FROM departamentos WHERE dept_no = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -61,6 +89,13 @@ public class Departamentos {
         return dep;
     }
 
+    /***
+     * Leer un departamento (pero por nombres).
+     * Con este constructor conseguimos que nos devuelva todos los departamentos que tengan el mismo numero
+     * @param NombreDep
+     * @return
+     * @throws SQLException 
+     */
     public Departamento ReadunoNombre(String NombreDep) throws SQLException {
         String sql = "SELECT * FROM departamentos WHERE dnombre = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -71,6 +106,13 @@ public class Departamentos {
         return dep;
     }
 
+    /***
+     * Borrado.
+     * Aqui podremos borrar un departamento a traves de su codigo
+     * @param codDep
+     * @return
+     * @throws SQLException 
+     */
     public int Delete(int codDep) throws SQLException {
         int filas;
         String sql = "DELETE FROM departamentos WHERE dept_no = ?";
@@ -80,6 +122,12 @@ public class Departamentos {
         return filas;
     }
 
+    /***
+     * Leer todos los departamentos.
+     * Nos devuelve todos los registros de la tabla de departamentos
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<Departamento> Readtodos() throws SQLException {
         departamentos = new ArrayList<Departamento>();
         String sql = "SELECT * FROM departamentos";
@@ -91,7 +139,10 @@ public class Departamentos {
         }
         return departamentos;
     }
-
+/***
+ * Cerrar programa.
+ * @throws SQLException 
+ */
     public void Close() throws SQLException {
         conexion.close();
     }

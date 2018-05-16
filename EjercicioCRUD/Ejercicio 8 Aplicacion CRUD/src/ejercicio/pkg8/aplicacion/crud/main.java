@@ -5,12 +5,24 @@ import java.util.Scanner;
 
 public class main {
 
+    /**
+     * 
+     * @param args
+     * @throws SQLException 
+     */
     public static void main(String[] args) throws SQLException {
+        
+        /**
+         * Creacion de objetos.
+         */
         SalidaDep salidadep = new SalidaDep();
         SalidaEmp salidaemp = new SalidaEmp();
         int salida = 1;
-
+        
         while (salida == 1) {
+            /**
+             * MEnu grafico para escoger la opcion que queremos realizar
+             */
             System.out.println("╔====================================================╗");
             System.out.println("║    • Selecciona la accion que quieres realizar •   ║");
             System.out.println("║                                                    ║");
@@ -27,7 +39,10 @@ public class main {
             System.out.println("║ 9. Salir del programa                              ║");
             System.out.println("║                                                    ║");
             System.out.println("╚====================================================╝");
-
+            
+            /**
+             * Switch con todos los casos que llama a los metodos
+             */
             Scanner sc = new Scanner(System.in);
             switch (Integer.parseInt(sc.nextLine())) {
                 case 1:
